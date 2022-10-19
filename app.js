@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const request = require('request');
 const https = require('https');
 const path = require('path');
+require('dotenv').config();
 
 const app = express();
 
@@ -37,7 +38,7 @@ app.post('/', (req, res) => {
 
 	const options = {
 		method: 'POST',
-		auth: 'sahilmir1:2ced64d04e1127cbead79794e9125ef6-us18',
+		auth: `sahilmir1:${process.env.MAILCHIP_API_KEY}`,
 	};
 
 	const request = https.request(url, options, function (response) {
@@ -62,9 +63,3 @@ app.post('/failure', (req, res) => {
 app.listen(process.env.PORT || 3000, () => {
 	console.log('Server is running on port 3000');
 });
-
-//API KEY
-//2ced64d04e1127cbead79794e9125ef6-us18
-
-//List ID
-//67b9808cb0
